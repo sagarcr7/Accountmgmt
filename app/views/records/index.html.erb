@@ -1,0 +1,30 @@
+<div class="panel panel-primary">
+<div class="panel-body",background:#F9EECF>
+
+    <h3>balance= <%= @balance %></h3>
+    <h3>debt= <%= @bebt %></h3>
+    <h3>total= <%= @total %></h3>
+</div>
+</div>
+<div class="col-md-12">
+        <h1>Account Records</h1>
+        <hr>
+        <table class="table">
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Action</th>
+            </tr>
+   		 <% @records.each do|record| %>
+           <tr>
+              <td><%= record.title %></td>
+              <td><%= record.date %></td>
+              <td><%= record.amount %></td> 
+              <td><%= link_to 'Delete', record_path(record), method: :delete, class: 'btn btn-sm btn-danger', data: {confirm: "Are you sure?"} %>
+                      <%= link_to 'Update', edit_record_path(record), class: 'btn btn-sm btn-success' %>
+              </td>
+            </tr>
+           <% end %>
+        </table>
+</div>

@@ -1,0 +1,7 @@
+<%= simple_form_for Record.new do |record| %>
+    <%= record.input :title %>
+    <%= record.input :date %>
+    <%= record.input :amount %>
+     <%= record.submit 'Add Record', class: 'btn btn-primary' %>
+    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+<% end %> 
