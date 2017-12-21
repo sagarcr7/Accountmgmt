@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Accountmgmt</title>
+    <title>Accounting Management</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
   </head>
 
   <body>
+  	nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <%= render 'shared/nav' %>
+</nav>
     <%= yield %>
   </body>
 </html>
