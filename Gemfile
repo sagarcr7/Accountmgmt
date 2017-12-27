@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+#gem for factory girl (added)
+gem 'factory_girl_rails'
 #gem for testing controller(added)
 gem 'rails-controller-testing'
 #gem for pagination(added)
