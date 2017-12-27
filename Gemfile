@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+#gem for testing controller(added)
+gem 'rails-controller-testing'
 #gem for pagination(added)
 gem 'will_paginate', '~> 3.1.0'
 #gem for bootstrap (added)
