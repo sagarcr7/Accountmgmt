@@ -42,4 +42,13 @@ describe "POST #create" do
   end
 end
 
+describe "GET #edit" do
+	it "renders the edit template" do
+		record = FactoryGirl.create(:record)
+		get :edit, params: { id: record.id }
+		expect(response).to render_template :edit
+		end
+	end
+
+
 end
