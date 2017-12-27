@@ -17,24 +17,27 @@ describe "GET #new" do
 end
 
 describe "POST #create" do
-  context "with valid attributes" do
+  context "when attributes are valid" do
     it "creates a new record" do
     	expect {
     post :create, params: {record: FactoryGirl.attributes_for(:record) }
     }.to change(Record, :count).by(1)
-
-    end
+	end
     it "redirects to root_path" do
-
+    	post :create, params: {record: FactoryGirl.attributes_for(:record) } 
+    	expect(response).to redirect_to root_path
     end
   end
 
-  context "with invalid attributes" do
+  context "when attributes are invalid" do
     it "doesn't create a new record" do
-
-    end
+    	expect {
+    	post :create, params: {record: FactoryGirl.attributes_for(:invalid_record) }
+    	}.to change(Record, :count).by(0)
+    	end
     it "renders the new template" do
-
+    	post :create, params: {record: FactoryGirl.attributes_for(:invalid_record) }
+    	expect(response).to render_template :new
     end
   end
 end

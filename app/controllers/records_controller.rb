@@ -13,6 +13,7 @@ class RecordsController < ApplicationController
 		redirect_to root_path
  	else
 		flash[:alert] = "sorry! there has been an error!"
+		render :new
 		end
 	end
 

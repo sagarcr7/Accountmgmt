@@ -3,5 +3,8 @@ FactoryGirl.define do
     title "Record Title"
     date  "2017-01-03"
     amount "25000"
+  factory :invalid_record do
+      amount "invalid amount"
   end
+end
 end
