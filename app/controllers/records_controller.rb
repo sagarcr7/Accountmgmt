@@ -7,8 +7,8 @@ class RecordsController < ApplicationController
 	 end
 
 	 def create
-	@records= Record.create(record_params)
-	if @records.valid?
+	@record= Record.create(record_params)
+	if @record.valid?
 		flash[:success] = "Your record has been created!"
 		redirect_to root_path
  	else
@@ -22,7 +22,8 @@ class RecordsController < ApplicationController
 	end
 	def update
 		@record = Record.find(params[:id])
-			if @record.update(record_params)
+		 @record.update(record_params)
+		if @record.valid?
 				flash[:success] = "The record has been updated!"
 				redirect_to root_path
 			else

@@ -50,5 +50,49 @@ describe "GET #edit" do
 		end
 	end
 
+describe "PUT #update" do
+    context "when attributes are valid" do
+      it "updates the record" do
+        record = FactoryGirl.create(:record)
+        put :update, params: { id: record.id, record: FactoryGirl.attributes_for(:record, title: 'New Title') }
+        record.reload
+        expect(record.title).to eq("New Title")
+      end
+      it "redirects to root_path" do
+        record = FactoryGirl.create(:record)
+        put :update, params: { id: record.id, record: FactoryGirl.attributes_for(:record, title: 'New Title', date: 'New Date') }
+        expect(response).to redirect_to root_path
+      end
+    end
+    context "when attributes are invalid" do
+      it "doesnot update the post" do
+        record = FactoryGirl.create(:record)
+        put :update, params: { id: record.id, record: FactoryGirl.attributes_for(:record, title: 'New Title', date: 'New Date', amount: 'New Amount') }
+        record.reload
+        expect(record.title).to_not eq("New Title")
+        expect(record.date).to_not eq("New Date")
+        expect(record.amount).to_not eq("New Amount")
+      end
+      it "renders the edit template" do
+        record = FactoryGirl.create(:record)
+        put :update, params: { id: record.id, record: FactoryGirl.attributes_for(:invalid_record) }
+        expect(response).to render_template :edit
+      end
+    end
+  end
 
+ describe "DELETE #destroy" do
+  it "deletes the record" do
+    record = FactoryGirl.create(:record)
+    expect {
+      delete :destroy, params: {id: record.id
+   } }.to change(Record, :count).by(-1)
+  end
+
+  it "redirects to root_path" do
+    record = FactoryGirl.create(:record)
+    delete :destroy, params: {id: record.id}
+    expect(response).to redirect_to root_path
+  end
+end
 end
