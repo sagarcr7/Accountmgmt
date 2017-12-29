@@ -32,11 +32,11 @@ describe "POST #create" do
   context "when attributes are invalid" do
     it "doesn't create a new record" do
     	expect {
-    	post :create, params: {record: FactoryGirl.attributes_for(:invalid_record) }
+    	post :create, params: {record: {title: "dkjfksjdf"} }
     	}.to change(Record, :count).by(0)
     	end
     it "renders the new template" do
-    	post :create, params: {record: FactoryGirl.attributes_for(:invalid_record) }
+    	post :create, params: {record: {title: 'lkasjdflskd'} }
     	expect(response).to render_template :new
     end
   end
@@ -60,22 +60,21 @@ describe "PUT #update" do
       end
       it "redirects to root_path" do
         record = FactoryGirl.create(:record)
-        put :update, params: { id: record.id, record: FactoryGirl.attributes_for(:record, title: 'New Title', date: 'New Date') }
+        put :update, params: { id: record.id, record: FactoryGirl.attributes_for(:record, title: 'New Title', date: Time.new(2016, 01, 03), amount: '4000') }
         expect(response).to redirect_to root_path
       end
     end
     context "when attributes are invalid" do
       it "doesnot update the post" do
         record = FactoryGirl.create(:record)
-        put :update, params: { id: record.id, record: FactoryGirl.attributes_for(:record, title: 'New Title', date: 'New Date', amount: 'New Amount') }
+        put :update, params: { id: record.id, record: FactoryGirl.attributes_for(:record, title: 'NewTitle', date: Time.new(2016, 01, 03)) }
         record.reload
         expect(record.title).to_not eq("New Title")
-        expect(record.date).to_not eq("New Date")
-        expect(record.amount).to_not eq("New Amount")
+        expect(record.date).to_not eq("2016-01-14")
       end
       it "renders the edit template" do
         record = FactoryGirl.create(:record)
-        put :update, params: { id: record.id, record: FactoryGirl.attributes_for(:invalid_record) }
+        put :update, params: { id: record.id, record: FactoryGirl.attributes_for(:record, date: 'asdasd') }
         expect(response).to render_template :edit
       end
     end

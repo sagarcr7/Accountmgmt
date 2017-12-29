@@ -4,7 +4,7 @@ FactoryGirl.define do
     date  "2017-01-03"
     amount "25000"
   factory :invalid_record do
-      amount "invalid amount"
+      amount "asdasasf"
   end
 end
 end

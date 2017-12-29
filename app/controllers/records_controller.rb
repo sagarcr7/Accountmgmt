@@ -19,27 +19,27 @@ class RecordsController < ApplicationController
 
 	def edit
 		 @record = Record.find(params[:id])
+
+
 	end
 	def update
 		@record = Record.find(params[:id])
 		 @record.update(record_params)
 		if @record.valid?
-				flash[:success] = "The record has been updated!"
 				redirect_to root_path
 			else
-				flash[:alert] = "Sorry! there has been an error!"
-				redirect_to edit_record_path(params[:id])
+				render :edit
     		end
 	end
 
 	def destroy
 		@record=Record.find(params[:id])
 		@record.destroy
-		flash[:success] = "The record was successfully deleted!"
 		redirect_to root_path
 	end
 
 	 private
+
 	def record_params
 		params.require(:record).permit(:title, :date , :amount)
 	end
